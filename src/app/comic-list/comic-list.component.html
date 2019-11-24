@@ -1,0 +1,15 @@
+<!-- <p>comic-list works!</p>-->
+<!-- <div>{{comics[0] | json}}</div> -->
+
+
+<div class="container">
+  <div class="row"><h4 class="col-12">Comics List</h4></div>
+  <div class="row">
+    <div class="col-md-3 col-sm-6 col-12 row-eq-height item-comic" *ngFor="let comic of comics">
+      <div class="inner-wrap" (click)="gotoDetails(comic.id, comic.name)">
+        <div>{{comic.id}}</div>
+        <div>{{comic.name}}</div>
+      <div>
+    </div>
+  </div>
+</div>

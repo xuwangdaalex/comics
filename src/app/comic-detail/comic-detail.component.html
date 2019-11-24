@@ -1,0 +1,70 @@
+<!-- <p>comic-detail works!</p>
+<div>{{comic | json}}</div> -->
+
+<div class="container" *ngIf="dataReady">
+
+  <div class="row">
+    <div class="col-12">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a [routerLink]="['/']">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{comic.name}}</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <div class="row"><h4 class="col-12">Comic Details</h4></div>
+
+  <div class="row">
+    <div class="col-12 col-sm-4">
+      <img src="http://www.deluxevectors.com/images/sample/generic-male-avatar-rectangular" class="img-fluid">
+    </div>
+    <div class="col-12 col-sm-8">
+      <p>{{comic.id}}</p>
+      <p>{{comic.name}}</p>
+      <p>{{comic.email}}</p>
+      <p>{{comic.phone}}</p>
+      <p>{{comic.website}}</p>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 40px; margin-bottom: 15px">
+    <h6 class="col-12">
+      Hobbies <span class="badge badge-light" style="margin-left: 15px; cursor: pointer" (click)="open(content)">+</span>
+    </h6>
+  </div>
+
+  <div class="row">
+    <div class="col-2 row-eq-height item-hobby" *ngFor="let hobby of comic.hobbies">
+      <div class="inner-wrap">
+        {{hobby.value}} <span class="badge badge-secondary" (click)="deleteHobbyFromUser(hobby.id)">X</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="height: 100px"></div>
+
+<!-- dialog box-->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add new hobby</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="dateOfBirth">New hobby: </label>
+        <div class="input-group">
+          <input [value]="hobbyName" (input)="hobbyName = $event.target.value">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn" (click)="modal.dismiss('Cross click')">Cancel</button>
+    <button type="button" class="btn btn-outline-dark" [disabled]="!hobbyName" (click)="addHobbyToUser(); modal.close()">Save</button>
+  </div>
+</ng-template>
